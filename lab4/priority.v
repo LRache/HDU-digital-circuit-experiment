@@ -4,10 +4,10 @@ module Priority (
     output reg  [2:0] y,
     output wire done
 );
-    assign done = (~(|i)) & not_en;
+    assign done = (|i) & ~not_en;
 
     always @(*) begin
-        if (!not_en) begin
+        if (not_en) begin
             y = 3'b000;
         end else if (i[0] == 1'b1) begin
             y = 3'h0;
