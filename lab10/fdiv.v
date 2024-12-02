@@ -39,7 +39,7 @@ module Fdiv(
             count_1 <= 0;
             clk_1_reg <= 0;
         end else begin
-            if (count_1 == 32'd10_000_000 - 1) begin
+            if (count_1 == 32'd10_000_000) begin
                 count_1 <= 0;
                 clk_1_reg <= ~clk_1_reg;
             end else begin
