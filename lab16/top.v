@@ -9,8 +9,8 @@ module Top(
     output [6:0] seg_al,
     output [6:0] seg_bh,
     output [6:0] seg_bl,
-    output [2:0] led_a,
-    output [2:0] led_b
+    output reg [2:0] led_a,
+    output reg [2:0] led_b
 );
     reg [31:0] counter;
     
@@ -111,5 +111,28 @@ module Top(
         .digit (stop ? 4'ha : timer_low),
         .seg   (seg_bl)
     );
+
+    // red green yellow
+    always @(*) begin
+        case (state)
+            s_1: begin
+                led_a = 3'b010;
+                led_b = 3'b100;
+            end
+            s_2: begin
+                led_a = 3'b001;
+                led_b = 3'b100;
+            end
+            s_3: begin
+                led_a = 3'b100;
+                led_b = 3'b010;
+            end
+            s_4: begin
+                led_a = 3'b100;
+                led_b = 3'b001;
+            end
+            default: 
+        endcase
+    end
     
 endmodule //Top
